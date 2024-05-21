@@ -17,8 +17,7 @@ function useFetchData() {
       setIsLoading(true);
       try {
         const response = await axios.get(`http://localhost:8000/data`);
-        console.log("data is: " + response);
-        setEntries(response);
+        setEntries(response.data);
         setIsLoading(false);
       } catch (error) {
         setError(error.message);

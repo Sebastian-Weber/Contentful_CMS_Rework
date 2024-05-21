@@ -15,14 +15,14 @@ function DetailPage() {
 
   {
     entries.map((entry) => {
-      if (entry.fields.id === Number(id)) {
-        apiDetails.title = entry.fields.name;
-        apiDetails.description = entry.fields.description;
-        apiDetails.url = entry.fields.icon.fields.file.url;
-        apiDetails.category = entry.fields.category;
-        apiDetails.popularity = entry.fields.popularity;
-        apiDetails.usage = entry.fields.usage;
-        apiDetails.author = entry.fields.developer;
+      if (entry.id === Number(id)) {
+        apiDetails.title = entry.title;
+        apiDetails.description = entry.description;
+        apiDetails.url = entry.file.url;
+        apiDetails.category = entry.category;
+        apiDetails.popularity = entry.popularity;
+        apiDetails.usage = entry.usage;
+        apiDetails.author = entry.developer;
       }
       // console.log(entry);
     });

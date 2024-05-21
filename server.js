@@ -1,24 +1,15 @@
 import express from "express";
 import { data } from "./src/data.js";
+import cors from "cors";
 
 const PORT = 8000;
 
 const app = express();
-
+app.use(cors());
 app.use(express.json());
 
 //API for getting json data
 app.get("/data", (request, response) => {
-  //read the data
-  // fs.readFile("./src/data.json", "utf-8", (error, data) => {
-  //   if (error) {
-  //     return console.log("Error reading file:", error);
-  //   }
-  //   console.log(data);
-  //   console.log("Finished reading file asynchronously");
-  // });
-  console.log(data);
-
   response.json(data);
 });
 
