@@ -75,7 +75,7 @@ function Contentful({ itemsPerPage }) {
     entries.map((entry) => {
       if (filter.length > 0) {
         const result = filter.filter((value) => {
-          return value === entry.fields.category;
+          return value === entry.category;
         });
         // console.log(result);
         if (result.length > 0) {
