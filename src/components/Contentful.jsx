@@ -12,6 +12,8 @@ function Items({ currentItems, filter }) {
     <>
       {currentItems &&
         currentItems.map((entry) => {
+          console.log(entry.file);
+          // console.log("filter.length: " + filter.length);
           if (filter.length > 0) {
             const result = filter.filter((value) => {
               return value === entry.category;
@@ -54,17 +56,14 @@ function Contentful({ itemsPerPage }) {
   const [itemOffset, setItemOffset] = useState(0);
   const [filter, setFilter] = useState([]);
   const { entries, isLoading } = useFetchData();
-  // console.log("Array is: " + entries);
 
   function handleFilterChange(newFilter) {
-    // console.log(newFilter);
     const arr = [...newFilter];
     setFilter(arr);
   }
 
   useEffect(() => {
-    console.log("filter ist");
-    console.log(filter);
+    console.log("filter ist: " + filter);
     return () => {
       // cleanup function
     };
@@ -73,15 +72,12 @@ function Contentful({ itemsPerPage }) {
   function getFilteredEntries() {
     const entriesAfterFilter = [];
     entries.map((entry) => {
-      console.log("filter.length" + filter);
       if (filter.length > 0) {
         const result = filter.filter((value) => {
           return value === entry.category;
         });
-        // console.log(result);
         if (result.length > 0) {
           entriesAfterFilter.push(entry);
-          console.log("filterEntries:" + entriesAfterFilter);
         }
       }
     });
@@ -100,7 +96,7 @@ function Contentful({ itemsPerPage }) {
 
   function getNewOffset(event) {
     const filteredEntries = getFilteredEntries();
-    console.log("filtered" + filteredEntries.length);
+
     if (!(filteredEntries.length > 0)) {
       return (event.selected * itemsPerPage) % entries.length;
     } else {
