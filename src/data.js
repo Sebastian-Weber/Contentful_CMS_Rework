@@ -240,6 +240,7 @@ export const data = [
       url: "//images.ctfassets.net/moq7l799ngye/3RrLJlpstTHBrc1bRt1LTp/2a647a1b666f5cc9097db043b3a29f36/Art_Institute_of_Chicago_Logo.svg",
     },
     developer: "Art Institute of Chicago",
+    popularity: 0,
     category: "Data",
   },
 
@@ -263,6 +264,7 @@ export const data = [
     file: {
       url: "//images.ctfassets.net/moq7l799ngye/6MDygqMYvCley14OLpeUzV/e3760584757adce7993bbf8aacbf9afa/jsonImg.png",
     },
+    popularity: 0,
     category: "Data",
   },
 
@@ -273,6 +275,7 @@ export const data = [
     file: {
       url: "//images.ctfassets.net/moq7l799ngye/6Z3HeRDQsjYWYT74Adtmqz/8ef6f4bad4e1074f2a9a827edc83838e/Microsoft_logo.jpg",
     },
+    popularity: 0,
     category: "Education",
   },
 
@@ -284,6 +287,7 @@ export const data = [
     },
     description:
       "Over 1,000+ emojis available which can be referenced using their unicode or name values.\n\nView all emojis: \n\nhttps://emojiapi.dev/emojis",
+    popularity: 0,
     category: "Social",
   },
 ];

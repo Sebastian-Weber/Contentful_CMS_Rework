@@ -22,7 +22,8 @@ const colors = {
     "py-1 px-4 gap-2 font-semibold text-sm rounded-full text-slate-300 dark:text-cyan-400 bg-cyan-100",
 };
 
-function useGetEmoji() {
+function useGetEmoji(popularity) {
+  console.log("popularity: " + popularity);
   if (popularity > 6.6) {
     return emojiHappy;
   } else if (popularity <= 6.6 && popularity >= 3.3) {
