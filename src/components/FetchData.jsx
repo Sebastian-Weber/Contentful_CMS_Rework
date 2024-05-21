@@ -1,28 +1,31 @@
 import { useState, useEffect } from "react";
-import { createClient } from "contentful";
+import axios from "axios";
+// import { createClient } from "contentful";
 
-const client = createClient({
-  space: import.meta.env.VITE_CONTENTFUL_SPACE_ID,
-  accessToken: import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN,
-});
+// const client = createClient({
+//   space: import.meta.env.VITE_CONTENTFUL_SPACE_ID,
+//   accessToken: import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN,
+// });
 
 function useFetchData() {
   const [entries, setEntries] = useState([]);
-
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    setIsLoading(true);
-    client
-      .getEntries()
-      .then((response) => {
-        setEntries(response.items);
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const response = await axios.get(`http://localhost:8000/data`);
+        setEntries(response.data);
         setIsLoading(false);
-      })
-      .catch((error) => {
+      } catch (error) {
+        setError(error.message);
         console.error(error);
         setIsLoading(false);
-      });
+      }
+    };
+    fetchData();
   }, []);
 
   return { entries, isLoading };

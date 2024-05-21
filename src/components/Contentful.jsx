@@ -14,34 +14,34 @@ function Items({ currentItems, filter }) {
         currentItems.map((entry) => {
           if (filter.length > 0) {
             const result = filter.filter((value) => {
-              return value === entry.fields.category;
+              return value === entry.category;
             });
-            // console.log(result);
+
             if (result.length > 0) {
               return (
                 <ApiCard
-                  key={entry.sys.id}
-                  id={entry.fields.id}
-                  title={entry.fields.name}
-                  url={entry.fields.icon.fields.file.url}
-                  alt={entry.fields.title}
-                  description={entry.fields.description}
-                  popularity={entry.fields.popularity}
-                  category={entry.fields.category}
+                  key={entry.id}
+                  id={entry.id}
+                  title={entry.title}
+                  url={entry.file.url}
+                  alt={entry.title}
+                  description={entry.description}
+                  popularity={entry.popularity}
+                  category={entry.category}
                 ></ApiCard>
               );
             }
           } else {
             return (
               <ApiCard
-                key={entry.sys.id}
-                id={entry.fields.id}
-                title={entry.fields.name}
-                url={entry.fields.icon.fields.file.url}
-                alt={entry.fields.title}
-                description={entry.fields.description}
-                popularity={entry.fields.popularity}
-                category={entry.fields.category}
+                key={entry.id}
+                id={entry.id}
+                title={entry.title}
+                url={entry.file.url}
+                alt={entry.title}
+                description={entry.description}
+                popularity={entry.popularity}
+                category={entry.category}
               ></ApiCard>
             );
           }
@@ -54,6 +54,7 @@ function Contentful({ itemsPerPage }) {
   const [itemOffset, setItemOffset] = useState(0);
   const [filter, setFilter] = useState([]);
   const { entries, isLoading } = useFetchData();
+  console.log("Array is: " + entries);
 
   function handleFilterChange(newFilter) {
     console.log(newFilter);
@@ -147,7 +148,7 @@ function Contentful({ itemsPerPage }) {
         <OffCanvas onChangeFilter={handleFilterChange} categories={filter} />
         <form className="mx-auto">
           <label
-            htmlfor="default-search"
+            htmlFor="default-search"
             className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
           >
             Search
@@ -163,9 +164,9 @@ function Contentful({ itemsPerPage }) {
               >
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
                 />
               </svg>
