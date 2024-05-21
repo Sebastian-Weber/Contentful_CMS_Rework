@@ -7,31 +7,11 @@ import NavbarTop from "./NavbarTop";
 import OffCanvas from "./OffCanvas";
 
 function Items({ currentItems, filter }) {
-  // console.log(currentItems);
   return (
     <>
       {currentItems &&
         currentItems.map((entry) => {
-          if (filter.length > 0) {
-            const result = filter.filter((value) => {
-              return value === entry.category;
-            });
-
-            if (result.length > 0) {
-              return (
-                <ApiCard
-                  key={entry.id}
-                  id={entry.id}
-                  title={entry.title}
-                  url={entry.file.url}
-                  alt={entry.title}
-                  description={entry.description}
-                  popularity={entry.popularity}
-                  category={entry.category}
-                ></ApiCard>
-              );
-            }
-          } else {
+          if (filter.length === 0 || filter.includes(entry.category)) {
             return (
               <ApiCard
                 key={entry.id}
@@ -42,9 +22,10 @@ function Items({ currentItems, filter }) {
                 description={entry.description}
                 popularity={entry.popularity}
                 category={entry.category}
-              ></ApiCard>
+              />
             );
           }
+          return null;
         })}
     </>
   );
@@ -54,59 +35,31 @@ function Contentful({ itemsPerPage }) {
   const [itemOffset, setItemOffset] = useState(0);
   const [filter, setFilter] = useState([]);
   const { entries, isLoading } = useFetchData();
-  // console.log("Array is: " + entries);
-
-  function handleFilterChange(newFilter) {
-    // console.log(newFilter);
-    const arr = [...newFilter];
-    setFilter(arr);
-  }
 
   useEffect(() => {
-    console.log("filter ist");
-    console.log(filter);
-    return () => {
-      // cleanup function
-    };
+    console.log("filter ist: " + filter);
   }, [filter]);
 
-  function getFilteredEntries() {
-    const entriesAfterFilter = [];
-    entries.map((entry) => {
-      console.log("filter.length" + filter);
-      if (filter.length > 0) {
-        const result = filter.filter((value) => {
-          return value === entry.category;
-        });
-        // console.log(result);
-        if (result.length > 0) {
-          entriesAfterFilter.push(entry);
-          console.log("filterEntries:" + entriesAfterFilter);
-        }
-      }
-    });
+  const handleFilterChange = useCallback((newFilter) => {
+    setFilter([...newFilter]);
+    setItemOffset(0); // Reset offset when filter changes
+  }, []);
 
-    return entriesAfterFilter;
-  }
+  const filteredEntries =
+    filter.length > 0
+      ? entries.filter((entry) => filter.includes(entry.category))
+      : entries;
 
-  function getCurrentItems() {
-    const filteredEntries = getFilteredEntries();
-    if (!(filteredEntries.length > 0)) {
-      return entries.slice(itemOffset, endOffset);
-    } else {
-      return filteredEntries.slice(itemOffset, endOffset);
-    }
-  }
+  const currentItems = filteredEntries.slice(
+    itemOffset,
+    itemOffset + itemsPerPage
+  );
+  const pageCount = Math.ceil(filteredEntries.length / itemsPerPage);
 
-  function getNewOffset(event) {
-    const filteredEntries = getFilteredEntries();
-    console.log("filtered" + filteredEntries.length);
-    if (!(filteredEntries.length > 0)) {
-      return (event.selected * itemsPerPage) % entries.length;
-    } else {
-      return (event.selected * itemsPerPage) % filteredEntries.length;
-    }
-  }
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % filteredEntries.length;
+    setItemOffset(newOffset);
+  };
 
   if (isLoading) {
     return (
@@ -120,29 +73,6 @@ function Contentful({ itemsPerPage }) {
       </div>
     );
   }
-
-  function getPageCount() {
-    const filteredEntries = getFilteredEntries();
-    if (!(filteredEntries.length > 0)) {
-      return Math.ceil(entries.length / itemsPerPage);
-    } else {
-      return Math.ceil(filteredEntries.length / itemsPerPage);
-    }
-  }
-
-  const endOffset = itemOffset + itemsPerPage;
-
-  const currentItems = getCurrentItems();
-
-  const pageCount = getPageCount();
-
-  const handlePageClick = (event) => {
-    const newOffset = getNewOffset(event);
-    console.log(newOffset);
-
-    // const newOffset = (event.selected * itemsPerPage) % entries.length;
-    setItemOffset(newOffset);
-  };
 
   return (
     <>
@@ -192,11 +122,7 @@ function Contentful({ itemsPerPage }) {
       </div>
       <div className="flex flex-col w-3/5 mx-auto items-center justify-center px-12">
         <div className="flex flex-wrap mx-6 justify-normal gap-3">
-          <Items
-            currentItems={currentItems}
-            filter={filter}
-            className="flex flex-wrap gap-2"
-          />
+          <Items currentItems={currentItems} filter={filter} />
         </div>
         <footer className="sticky bottom-0">
           <div className="p-4">
