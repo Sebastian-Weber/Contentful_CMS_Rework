@@ -3,6 +3,7 @@ import emojiHappy from "../assets/emoji-happy.svg";
 import emojiUnhappy from "../assets/emoji-unhappy.svg";
 import emojiNeutral from "../assets/emoji-neutral.svg";
 import emojiNone from "../assets/emoji-none.svg";
+// import useGetEmoji from "./GetEmoji";
 
 function ApiCard({ id, title, url, alt, description, popularity, category }) {
   const colors = {
@@ -47,7 +48,7 @@ function ApiCard({ id, title, url, alt, description, popularity, category }) {
       return "gray";
     }
   }
-
+  // console.log(useGetEmoji(popularity));
   return (
     <div className="flex-wrap">
       <div className="block w-80 p-6 pb-2 bg-slate-700 border border-slate-700 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 ">
