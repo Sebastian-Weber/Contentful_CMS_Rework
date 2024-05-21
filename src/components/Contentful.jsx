@@ -147,7 +147,7 @@ function Contentful({ itemsPerPage }) {
         <OffCanvas onChangeFilter={handleFilterChange} categories={filter} />
         <form className="mx-auto">
           <label
-            for="default-search"
+            htmlfor="default-search"
             className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
           >
             Search
@@ -196,32 +196,45 @@ function Contentful({ itemsPerPage }) {
         </div>
         <footer className="sticky bottom-0">
           <div className="p-4">
-
-              <ReactPaginate 
-                containerClassName=""
-                className="flex flex-row"
-                onPageChange={handlePageClick}
-                pageCount={pageCount}
-                renderOnZeroPageCount={null}
-                pageRangeDisplayed={3}
-                pageClassName={"w-10 h-10 mx-1 pl-4 pt-2 text-slate-300 font-semibold bg-slate-800"}
-                activeClassName="text-slate-400 bg-slate-300"
-                breakLabel="..."
-
-                previousLabel={
-                  <div className="w-10 h-10 mx-1 pl-4 pt-3 bg-slate-800">
-                  <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960" width="18px" fill="#e2e8f0">
-                    <path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg>
-                  </div>
-                }
-                nextLabel={
-                  <div className="w-10 h-10 mx-1 pl-3 pt-3 text-semibold bg-slate-800">
-                  <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960" width="18px" fill="#e2e8f0">
-                    <path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
-                  </div>
-                }
-
-              />
+            <ReactPaginate
+              containerClassName=""
+              className="flex flex-row"
+              onPageChange={handlePageClick}
+              pageCount={pageCount}
+              renderOnZeroPageCount={null}
+              pageRangeDisplayed={3}
+              pageClassName={
+                "w-10 h-10 mx-1 pl-4 pt-2 text-slate-300 font-semibold bg-slate-800"
+              }
+              activeClassName="text-slate-400 bg-slate-300"
+              breakLabel="..."
+              previousLabel={
+                <div className="w-10 h-10 mx-1 pl-4 pt-3 bg-slate-800">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="18px"
+                    viewBox="0 -960 960 960"
+                    width="18px"
+                    fill="#e2e8f0"
+                  >
+                    <path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z" />
+                  </svg>
+                </div>
+              }
+              nextLabel={
+                <div className="w-10 h-10 mx-1 pl-3 pt-3 text-semibold bg-slate-800">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="18px"
+                    viewBox="0 -960 960 960"
+                    width="18px"
+                    fill="#e2e8f0"
+                  >
+                    <path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z" />
+                  </svg>
+                </div>
+              }
+            />
           </div>
         </footer>
       </div>
