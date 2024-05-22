@@ -66,16 +66,16 @@ function OffCanvas({ onChangeFilter, categories }) {
   const getClassNames = (name) =>
     activeFilter[name]
       ? colors[name]
-      : "py-1 px-4 gap-2 font-semibold text-sm rounded-full text-slate-300 dark:text-gray-400 bg-sky-200";
+      : "py-1 px-2 gap-2 font-semibold text-sm rounded-full text-slate-300 dark:text-gray-400 bg-sky-200";
 
   return (
     <>
       <div
         id="menu-wrapper"
-        className="justify-center fixed transition-transform bg-slate-600 dark:bg-gray-800 transform-none"
+        className="justify-center fixed transition-transform bg-slate-800 dark:bg-gray-800 transform-none"
       >
         <div id="iconbar" className="flex flex-row justify-between">
-          <div className="p-2" onClick={() => setShow(!show)}>
+          <div className="pl-6 pt-3" onClick={() => setShow(!show)}>
             <svg
               id="open-menu"
               xmlns="http://www.w3.org/2000/svg"
@@ -89,13 +89,13 @@ function OffCanvas({ onChangeFilter, categories }) {
           </div>
 
           {show && (
-            <div>
+            <div className="-mx-16 p-1 -my-5 border-gray-500 border-r-2 bg-slate-800 dark:bg-gray-800">
               <div
                 id="inner-content-wrapper"
-                className="p-6 -ml-20 bg-slate-500 w-72 dark:bg-gray-800"
+                className="p-4 h-screen"
               >
                 <div className="pb-4 flex flex-row justify-start">
-                  <div className="">
+                  <div className="pl-3 pt-3">
                     <svg
                       id="close-menu"
                       onClick={() => setShow(!show)}
@@ -111,11 +111,11 @@ function OffCanvas({ onChangeFilter, categories }) {
                 </div>
                 <div
                   id="Subheading"
-                  className="pl-2 pb-4 font-bold text-slate-100"
+                  className="pl-4 pb-4 font-bold text-slate-100"
                 >
                   Tags
                 </div>
-                <ul className="flex flex-wrap justify-start">
+                <ul className="flex flex-wrap px-2 w-56 justify-start">
                   {Object.keys(initialActiveFilter).map((key) => (
                     <li key={key} className="my-1 px-2">
                       <div className={getClassNames(key)}>

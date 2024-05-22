@@ -77,7 +77,7 @@ function Contentful({ itemsPerPage }) {
   return (
     <>
       {/* <NavbarTop onChangeFilter={handleFilterChange} categories={filter} /> */}
-      <div className="flex  bg-slate-600 mb-10">
+      <div className="flex bg-slate-800 mb-10 py-2  border-gray-500 border-b-2">
         <OffCanvas onChangeFilter={handleFilterChange} categories={filter} />
         <form className="mx-auto">
           <label
