@@ -70,29 +70,34 @@ function OffCanvas({ onChangeFilter, categories }) {
 
   return (
     <>
+    
       <div
         id="menu-wrapper"
-        className="justify-center fixed transition-transform bg-slate-800 dark:bg-gray-800 transform-none"
+        className="justify-center h-lvh fixed transition-transform"
       >
         <div id="iconbar" className="flex flex-row justify-between">
-          <div className="pl-6 pt-3" onClick={() => setShow(!show)}>
+          <div className="pl-6 pt-5" onClick={() => setShow(!show)}>
             <svg
               id="open-menu"
               xmlns="http://www.w3.org/2000/svg"
               height="32px"
               viewBox="0 -960 960 960"
               width="32px"
-              fill="#ffffff"
+              fill="#64748b"
+              class="hover:fill-current hover:text-slate-300"
             >
               <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
             </svg>
           </div>
 
+
+
+
           {show && (
-            <div className="-mx-16 border-gray-500 border-r-2 bg-slate-800 dark:bg-gray-800">
+            <div className="-mx-16 h-screen border-gray-500 border-r-2 bg-slate-800 dark:bg-gray-800">
               <div
                 id="inner-content-wrapper"
-                className="pl-5 pt-3 h-screen"
+                className="pl-5 pt-5"
               >
                 <div className="pb-4 flex flex-row justify-start">
                   <div className="pl-3">
@@ -103,7 +108,8 @@ function OffCanvas({ onChangeFilter, categories }) {
                       height="32px"
                       viewBox="0 -960 960 960"
                       width="32px"
-                      fill="#ffffff"
+                      fill="#64748b"
+                      class="hover:fill-current hover:text-slate-300"
                     >
                       <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
                     </svg>
@@ -111,7 +117,7 @@ function OffCanvas({ onChangeFilter, categories }) {
                 </div>
                 <div
                   id="Subheading"
-                  className="pl-4 pb-4 font-bold text-slate-100"
+                  className="pl-4 pb-4 font-bold text-slate-300"
                 >
                   Tags
                 </div>
@@ -136,6 +142,7 @@ function OffCanvas({ onChangeFilter, categories }) {
           )}
         </div>
       </div>
+      
     </>
   );
 }
