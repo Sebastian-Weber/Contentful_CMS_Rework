@@ -66,7 +66,7 @@ function OffCanvas({ onChangeFilter, categories }) {
   const getClassNames = (name) =>
     activeFilter[name]
       ? colors[name]
-      : "py-1 px-2 gap-2 font-semibold text-sm rounded-full text-slate-300 dark:text-gray-400 bg-sky-200";
+      : "py-1 px-4 gap-2 font-semibold text-sm rounded-full text-slate-300 dark:text-gray-400 bg-sky-200";
 
   return (
     <>
