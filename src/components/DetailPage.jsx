@@ -77,7 +77,7 @@ function DetailPage() {
           </div>
           <hr className="w-10rem h-0.5 mx-auto md:my-3 bg-gray-100 border-0 rounded dark:bg-gray-700" />
           <div>
-            <ApiSuggestions categoryFilter={apiDetails.category} />
+            <ApiSuggestions category={apiDetails.category} />
           </div>
           <div className="flex justify-end">
             <Link to={"/"}>
