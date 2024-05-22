@@ -281,7 +281,7 @@ export const data = [
 
   {
     id: "21",
-    name: "Emoji API",
+    title: "Emoji API",
     file: {
       url: "//images.ctfassets.net/moq7l799ngye/3D0hCA1mPcrxYqHUIoWqkK/3fd789d880df50c0e170a39460d04e1d/48.png",
     },

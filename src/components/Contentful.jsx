@@ -35,26 +35,77 @@ function Contentful({ itemsPerPage }) {
   const [itemOffset, setItemOffset] = useState(0);
   const [filter, setFilter] = useState([]);
   const { entries, isLoading } = useFetchData();
+  const [searchResults, setSearchResults] = useState([]);
+  const [filteredEntries, setFilteredEntries] = useState([]);
+  const [currentItems, setCurrentItems] = useState([]);
 
   useEffect(() => {
-    console.log("filter ist: " + filter);
+    const getFilteredEntries = () => {
+      if (filter.length > 0) {
+        console.log("filter ist: " + filter);
+        return entries.filter((entry) => filter.includes(entry.category));
+      } else {
+        return entries;
+      }
+    };
+    setFilteredEntries([...getFilteredEntries()]);
   }, [filter]);
+
+  useEffect(() => {
+    console.log(entries);
+    setFilteredEntries([...entries]);
+  }, [entries]);
+
+  useEffect(() => {
+    console.log(currentItems);
+  }, [currentItems]);
+
+  useEffect(() => {
+    console.log(searchResults);
+    if (searchResults.length > 0) {
+      setFilteredEntries([...searchResults]);
+    } else {
+      setFilteredEntries([...entries]);
+    }
+  }, [searchResults]);
+
+  useEffect(() => {
+    function getCurrentItems() {
+      console.log("get current items");
+      console.log(filteredEntries);
+      return filteredEntries.slice(itemOffset, itemOffset + itemsPerPage);
+    }
+    setCurrentItems([...getCurrentItems()]);
+  }, [filteredEntries, itemOffset]);
 
   const handleFilterChange = useCallback((newFilter) => {
     setFilter([...newFilter]);
     setItemOffset(0); // Reset offset when filter changes
   }, []);
 
-  const filteredEntries =
-    filter.length > 0
-      ? entries.filter((entry) => filter.includes(entry.category))
-      : entries;
+  // const currentItems = filteredEntries.slice(
+  //   itemOffset,
+  //   itemOffset + itemsPerPage
+  // );
 
-  const currentItems = filteredEntries.slice(
-    itemOffset,
-    itemOffset + itemsPerPage
-  );
-  const pageCount = Math.ceil(filteredEntries.length / itemsPerPage);
+  function handleChange(e) {
+    e.preventDefault();
+    console.log(e.target.value);
+    console.log(entries);
+    getSearchResults(e.target.value);
+  }
+
+  function getSearchResults(value) {
+    // Input should at least have 3 characters
+
+    const results = entries.filter((entry) =>
+      entry.title.toLowerCase().includes(value.toLowerCase())
+    );
+    setFilter([]); // Reset filter when searching
+    setItemOffset(0); // Reset offset when searching
+    console.log(results);
+    setSearchResults([...results]); // Update filteredEntries with search results
+  }
 
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % filteredEntries.length;
@@ -79,46 +130,7 @@ function Contentful({ itemsPerPage }) {
       {/* <NavbarTop onChangeFilter={handleFilterChange} categories={filter} /> */}
       <div className="flex bg-slate-800 mb-10 border-gray-500 border-b-2">
         <OffCanvas onChangeFilter={handleFilterChange} categories={filter} />
-        {/* <form className="mx-auto py-2">
-          <label
-            htmlFor="default-search"
-            className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
-          >
-            Search
-          </label>
-          <div className="relative w-96">
-            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-              <svg
-                className="w-4 h-4 text-gray-500 dark:text-gray-400"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                />
-              </svg>
-            </div>
-            <input
-              type="search"
-              id="default-search"
-              className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-800 rounded-lg bg-gray-800 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Search for API..."
-              required
-            />
-            <button
-              type="submit"
-              className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Search
-            </button>
-          </div>
-        </form> */}
+
         <form className="mx-auto py-2">
           <label
             htmlFor="default-search"
@@ -150,6 +162,7 @@ function Contentful({ itemsPerPage }) {
               className="block w-full p-4 ps-10 text-sm border-none outline-none text-slate-300 bg-gray-800 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white"
               placeholder="Search for API..."
               required
+              onChange={handleChange}
             />
             <button
               type="submit"
@@ -170,7 +183,7 @@ function Contentful({ itemsPerPage }) {
               containerClassName=""
               className="flex flex-row"
               onPageChange={handlePageClick}
-              pageCount={pageCount}
+              pageCount={Math.ceil(filteredEntries.length / itemsPerPage)}
               renderOnZeroPageCount={null}
               pageRangeDisplayed={3}
               pageClassName={
