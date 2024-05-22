@@ -77,7 +77,7 @@ function Contentful({ itemsPerPage }) {
   return (
     <>
       {/* <NavbarTop onChangeFilter={handleFilterChange} categories={filter} /> */}
-      <div className="flex  bg-slate-600 mb-10">
+      <div className="flex bg-slate-800 mb-10 py-2  border-gray-500 border-b-2">
         <OffCanvas onChangeFilter={handleFilterChange} categories={filter} />
         <form className="mx-auto">
           <label
@@ -136,7 +136,7 @@ function Contentful({ itemsPerPage }) {
               pageClassName={
                 "w-10 h-10 mx-1 pl-4 pt-2 text-slate-300 font-semibold bg-slate-800"
               }
-              activeClassName="text-slate-400 bg-slate-300"
+              activeClassName="text-slate-600 bg-slate-200"
               breakLabel="..."
               previousLabel={
                 <div className="w-10 h-10 mx-1 pl-4 pt-3 bg-slate-800">
