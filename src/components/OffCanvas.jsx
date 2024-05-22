@@ -77,21 +77,12 @@ function OffCanvas({ onChangeFilter, categories }) {
       >
         <div id="iconbar" className="flex flex-row justify-between">
           <div className="pl-6 pt-5" onClick={() => setShow(!show)}>
-            <svg
-              id="open-menu"
-              xmlns="http://www.w3.org/2000/svg"
-              height="32px"
-              viewBox="0 -960 960 960"
-              width="32px"
-              fill="#64748b"
-              class="hover:fill-current hover:text-slate-300"
-            >
-              <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
-            </svg>
+          <button type="button" data-drawer-hide="drawer-navigation" aria-controls="drawer-navigation" class=" text-gray-400 bg-transparent hover:text-gray-900 rounded-lg text-sm w-8 h-8 top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white" >
+              <svg class="w-6 h-6 text-gray-300 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14"/>
+              </svg>
+          </button>
           </div>
-
-
-
 
           {show && (
             <div className="-mx-16 h-screen border-gray-500 border-r-2 bg-slate-800 dark:bg-gray-800">
@@ -101,18 +92,11 @@ function OffCanvas({ onChangeFilter, categories }) {
               >
                 <div className="pb-4 flex flex-row justify-start">
                   <div className="pl-3">
-                    <svg
-                      id="close-menu"
-                      onClick={() => setShow(!show)}
-                      xmlns="http://www.w3.org/2000/svg"
-                      height="32px"
-                      viewBox="0 -960 960 960"
-                      width="32px"
-                      fill="#64748b"
-                      class="hover:fill-current hover:text-slate-300"
-                    >
-                      <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                  <button id="close-menu" onClick={() => setShow(!show)} type="button" data-drawer-hide="drawer-navigation" aria-controls="drawer-navigation" class=" text-gray-400 bg-transparent hover:bg-slate-600 focus:ring-2 ring-slate-700 hover:text-gray-900 rounded-lg text-sm w-8 h-8 top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white" >
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                     </svg>
+                  </button>
                   </div>
                 </div>
                 <div
