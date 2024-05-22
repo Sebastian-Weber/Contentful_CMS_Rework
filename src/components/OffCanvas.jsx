@@ -89,13 +89,13 @@ function OffCanvas({ onChangeFilter, categories }) {
           </div>
 
           {show && (
-            <div className="-mx-16 p-1 -my-5 border-gray-500 border-r-2 bg-slate-800 dark:bg-gray-800">
+            <div className="-mx-16 border-gray-500 border-r-2 bg-slate-800 dark:bg-gray-800">
               <div
                 id="inner-content-wrapper"
-                className="p-4 h-screen"
+                className="pl-5 pt-3 h-screen"
               >
                 <div className="pb-4 flex flex-row justify-start">
-                  <div className="pl-3 pt-3">
+                  <div className="pl-3">
                     <svg
                       id="close-menu"
                       onClick={() => setShow(!show)}
