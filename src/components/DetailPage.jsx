@@ -7,18 +7,16 @@ import CodeMirror from "@uiw/react-codemirror";
 import { langs } from "@uiw/codemirror-extensions-langs";
 import { darcula } from "@uiw/codemirror-theme-darcula";
 import useEmoji from "./useEmoji";
+import ApiSuggestions from "./ApiSuggestions";
 
 function DetailPage() {
   const { id } = useParams();
   const { entries } = useFetchData();
   const apiDetails = {};
-  console.log(entries[Number(id) - 1]);
   {
     entries.map((entry) => {
       if (entry.id === Number(id)) {
-        console.log(entry.id);
         apiDetails.title = entry.title;
-        console.log("detail is: " + apiDetails.title);
         apiDetails.description = entry.description;
         apiDetails.url = entry.file.url;
         apiDetails.category = entry.category;
@@ -28,6 +26,7 @@ function DetailPage() {
       }
     });
   }
+
   const { getEmoji, getTextColor } = useEmoji(apiDetails.popularity);
   return (
     <>
@@ -64,6 +63,7 @@ function DetailPage() {
                 {apiDetails.description}
               </p>
             </div>
+
             <div className="grow">
               <p className="pb-2 font-normal text-slate-300 dark:text-gray-400">
                 usage with axios:
@@ -76,6 +76,9 @@ function DetailPage() {
             </div>
           </div>
           <hr className="w-10rem h-0.5 mx-auto md:my-3 bg-gray-100 border-0 rounded dark:bg-gray-700" />
+          <div>
+            <ApiSuggestions categoryFilter={apiDetails.category} />
+          </div>
           <div className="flex justify-end">
             <Link to={"/"}>
               <button className="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
