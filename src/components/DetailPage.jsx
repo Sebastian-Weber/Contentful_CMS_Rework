@@ -6,17 +6,19 @@ import { Link } from "react-router-dom";
 import CodeMirror from "@uiw/react-codemirror";
 import { langs } from "@uiw/codemirror-extensions-langs";
 import { darcula } from "@uiw/codemirror-theme-darcula";
+import useEmoji from "./useEmoji";
 
 function DetailPage() {
   const { id } = useParams();
-  console.log(id);
   const { entries } = useFetchData();
   const apiDetails = {};
-
+  console.log(entries[Number(id) - 1]);
   {
     entries.map((entry) => {
       if (entry.id === Number(id)) {
+        console.log(entry.id);
         apiDetails.title = entry.title;
+        console.log("detail is: " + apiDetails.title);
         apiDetails.description = entry.description;
         apiDetails.url = entry.file.url;
         apiDetails.category = entry.category;
@@ -24,9 +26,9 @@ function DetailPage() {
         apiDetails.usage = entry.usage;
         apiDetails.author = entry.developer;
       }
-      // console.log(entry);
     });
   }
+  const { getEmoji, getTextColor } = useEmoji(apiDetails.popularity);
   return (
     <>
       <div className="flex mx-auto justify-center m-5">
@@ -50,7 +52,8 @@ function DetailPage() {
                 category: {apiDetails.category}
               </p>
               <p className="font-normal text-slate-300 dark:text-gray-400">
-                category: {apiDetails.popularity}
+                rating: {apiDetails.popularity}
+                <img src={getEmoji()} alt="" />
               </p>
             </div>
           </div>

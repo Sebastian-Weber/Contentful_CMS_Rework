@@ -1,9 +1,5 @@
 import { Link } from "react-router-dom";
-import emojiHappy from "../assets/emoji-happy.svg";
-import emojiUnhappy from "../assets/emoji-unhappy.svg";
-import emojiNeutral from "../assets/emoji-neutral.svg";
-import emojiNone from "../assets/emoji-none.svg";
-// import useGetEmoji from "./GetEmoji";
+import useEmoji from "./useEmoji";
 
 function ApiCard({ id, title, url, alt, description, popularity, category }) {
   const colors = {
@@ -20,35 +16,13 @@ function ApiCard({ id, title, url, alt, description, popularity, category }) {
       "bg-pink-100 text-pink-800 text-xs font-medium me-2 px-2.5 py-1 rounded-full dark:bg-pink-900 dark:text-pink-300",
     Music:
       "bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-1 rounded-full dark:bg-yellow-900 dark:text-yellow-300",
-    AI: "bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-1 rounded-full dark:bg-red-900 dark:text-red-300",
+    AI: "bg-red-100 text-red-800 npm run devtext-xs font-medium me-2 px-2.5 py-1 rounded-full dark:bg-red-900 dark:text-red-300",
     Weather:
       "py-1 px-4 gap-2 font-semibold text-sm rounded-full text-slate-300 dark:text-cyan-400 bg-cyan-100",
   };
 
-  function getEmoji() {
-    if (popularity > 6.6) {
-      return emojiHappy;
-    } else if (popularity <= 6.6 && popularity >= 3.3) {
-      return emojiNeutral;
-    } else if (popularity <= 3.3) {
-      return emojiUnhappy;
-    } else {
-      return emojiNone;
-    }
-  }
+  const { getEmoji, getTextColor } = useEmoji(popularity);
 
-  function getTextColor() {
-    if (popularity > 6.6) {
-      return "green";
-    } else if (popularity <= 6.6 && popularity >= 3.3) {
-      return "yellow";
-    } else if (popularity <= 3.3) {
-      return "red";
-    } else {
-      return "gray";
-    }
-  }
-  // console.log(useGetEmoji(popularity));
   return (
     <div className="flex-wrap">
       <div className="block w-80 p-6 pb-2 bg-slate-700 border border-slate-700 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 ">
