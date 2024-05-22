@@ -16,7 +16,7 @@ function ApiCard({ id, title, url, alt, description, popularity, category }) {
       "bg-pink-100 text-pink-800 text-xs font-medium me-2 px-2.5 py-1 rounded-full dark:bg-pink-900 dark:text-pink-300",
     Music:
       "bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-1 rounded-full dark:bg-yellow-900 dark:text-yellow-300",
-    AI: "bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-1 rounded-full dark:bg-red-900 dark:text-red-300",
+    AI: "bg-red-100 text-red-800 npm run devtext-xs font-medium me-2 px-2.5 py-1 rounded-full dark:bg-red-900 dark:text-red-300",
     Weather:
       "py-1 px-4 gap-2 font-semibold text-sm rounded-full text-slate-300 dark:text-cyan-400 bg-cyan-100",
   };
