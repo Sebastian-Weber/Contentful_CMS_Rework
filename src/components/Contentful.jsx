@@ -77,9 +77,9 @@ function Contentful({ itemsPerPage }) {
   return (
     <>
       {/* <NavbarTop onChangeFilter={handleFilterChange} categories={filter} /> */}
-      <div className="flex  bg-slate-600 mb-10">
+      <div className="flex bg-slate-800 mb-10 border-gray-500 border-b-2">
         <OffCanvas onChangeFilter={handleFilterChange} categories={filter} />
-        <form className="mx-auto">
+        {/* <form className="mx-auto py-2">
           <label
             htmlFor="default-search"
             className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -118,6 +118,46 @@ function Contentful({ itemsPerPage }) {
               Search
             </button>
           </div>
+        </form> */}
+        <form className="mx-auto py-2">
+          <label
+            htmlFor="default-search"
+            className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+          >
+            Search
+          </label>
+          <div className="relative w-96">
+            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+              <svg
+                className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                />
+              </svg>
+            </div>
+            <input
+              type="search"
+              id="default-search"
+              className="block w-full p-4 ps-10 text-sm border-none outline-none text-slate-300 bg-gray-800 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white"
+              placeholder="Search for API..."
+              required
+            />
+            <button
+              type="submit"
+              className="text-white absolute end-2.5 bottom-2.5 bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              Search
+            </button>
+          </div>
         </form>
       </div>
       <div className="flex flex-col w-3/5 mx-auto items-center justify-center px-12">
@@ -134,9 +174,9 @@ function Contentful({ itemsPerPage }) {
               renderOnZeroPageCount={null}
               pageRangeDisplayed={3}
               pageClassName={
-                "w-10 h-10 mx-1 pl-4 pt-2 text-slate-300 font-semibold bg-slate-800"
+                "w-10 h-10 mx-1 pl-4 pt-2 text-slate-500 font-semibold bg-slate-800"
               }
-              activeClassName="text-slate-400 bg-slate-300"
+              activeClassName="text-slate-200 bg-slate-300"
               breakLabel="..."
               previousLabel={
                 <div className="w-10 h-10 mx-1 pl-4 pt-3 bg-slate-800">
