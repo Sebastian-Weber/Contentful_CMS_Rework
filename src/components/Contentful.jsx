@@ -159,7 +159,7 @@ function Contentful({ itemsPerPage }) {
             <input
               type="search"
               id="default-search"
-              className="block w-full p-4 ps-10 text-sm border-none outline-none text-slate-300 bg-gray-800 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white"
+              className="block w-full my-2 p-2 ps-10 text-sm border-none outline-none text-slate-300 bg-slate-700 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white"
               placeholder="Search for API..."
               required
               onChange={handleChange}
