@@ -126,8 +126,8 @@ function Contentful({ itemsPerPage }) {
           >
             Search
           </label>
-          <div className="relative w-96">
-            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+          <div className="relative w-96 rounded-lg bg-slate-100">
+            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none ">
               <svg
                 className="w-4 h-4 text-gray-500 dark:text-gray-400"
                 aria-hidden="true"
@@ -153,7 +153,7 @@ function Contentful({ itemsPerPage }) {
             />
             <button
               type="submit"
-              className="text-white absolute end-2.5 bottom-2.5 bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="text-white absolute end-2.5 bottom-2.5 bg-sky-700 hover:bg-sky-800 focus:ring-2 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Search
             </button>
@@ -174,12 +174,12 @@ function Contentful({ itemsPerPage }) {
               renderOnZeroPageCount={null}
               pageRangeDisplayed={3}
               pageClassName={
-                "w-10 h-10 mx-1 pl-4 pt-2 text-slate-500 font-semibold bg-slate-800"
+                "w-10 h-10 mx-1 pl-4 pt-2 text-slate-500 font-semibold bg-slate-800 rounded-lg hover:bg-slate-400"
               }
-              activeClassName="text-slate-200 bg-slate-300"
+              activeClassName="text-slate-200 rounded-lg hover:bg-slate-400"
               breakLabel="..."
               previousLabel={
-                <div className="w-10 h-10 mx-1 pl-4 pt-3 bg-slate-800">
+                <div className="w-10 h-10 mx-1 pl-4 pt-3 rounded-lg bg-slate-800 hover:bg-slate-400">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     height="18px"
@@ -192,7 +192,7 @@ function Contentful({ itemsPerPage }) {
                 </div>
               }
               nextLabel={
-                <div className="w-10 h-10 mx-1 pl-3 pt-3 text-semibold bg-slate-800">
+                <div className="w-10 h-10 mx-1 pl-3 pt-3 rounded-lg bg-slate-800 hover:bg-slate-400">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     height="18px"

@@ -46,7 +46,7 @@ function ApiCard({ id, title, url, alt, description, popularity, category }) {
               >
                 Read More
               </button>
-              <div className="pt-4 px-2">
+              <div className="pt-4 px-0">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   height="24px"
