@@ -58,7 +58,7 @@ function DetailPage() {
           </div>
           <hr className="w-10rem h-0.5 mx-auto md:my-3 bg-gray-100 border-0 rounded dark:bg-gray-700" />
           <div className="flex p-10">
-            <div className="flex grow">
+            <div className="flex w-3/5">
               <p className="w-3/4 p-5 font-normal text-slate-300 dark:text-gray-400 text-lg">
                 {apiDetails.description}
               </p>
@@ -68,12 +68,19 @@ function DetailPage() {
               <p className="pb-2 font-normal text-slate-300 dark:text-gray-400">
                 usage with axios:
               </p>
-              <CodeMirror
-                value={apiDetails.usage}
-                extensions={[langs.jsx()]}
-                theme={darcula}
-                maxWidth="40rem"
-              />
+              {apiDetails.usage ? (
+                <CodeMirror
+                  value={apiDetails.usage}
+                  extensions={[langs.jsx()]}
+                  theme={darcula}
+                  maxWidth="40rem"
+                  minWidth="40rem"
+                />
+              ) : (
+                <p className="w-3/4 p-5 font-normal text-slate-300 dark:text-gray-400 text-lg">
+                  not available
+                </p>
+              )}
             </div>
           </div>
           <hr className="w-10rem h-0.5 mx-auto md:my-3 bg-gray-100 border-0 rounded dark:bg-gray-700" />
