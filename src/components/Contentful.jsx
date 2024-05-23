@@ -6,7 +6,7 @@ import BeatLoader from "react-spinners/BeatLoader";
 import NavbarTop from "./NavbarTop";
 import OffCanvas from "./OffCanvas";
 
-function Items({ currentItems, filter }) {
+function Items({ currentItems, filter, highlight }) {
   return (
     <>
       {currentItems &&
@@ -22,6 +22,7 @@ function Items({ currentItems, filter }) {
                 description={entry.description}
                 popularity={entry.popularity}
                 category={entry.category}
+                highlight={highlight}
               />
             );
           }
@@ -38,6 +39,7 @@ function Contentful({ itemsPerPage }) {
   const [searchResults, setSearchResults] = useState([]);
   const [filteredEntries, setFilteredEntries] = useState([]);
   const [currentItems, setCurrentItems] = useState([]);
+  const [highlight, setHighlight] = useState("");
 
   useEffect(() => {
     const getFilteredEntries = () => {
@@ -83,23 +85,21 @@ function Contentful({ itemsPerPage }) {
     setItemOffset(0); // Reset offset when filter changes
   }, []);
 
-  // const currentItems = filteredEntries.slice(
-  //   itemOffset,
-  //   itemOffset + itemsPerPage
-  // );
-
   function handleChange(e) {
     e.preventDefault();
     console.log(e.target.value);
     console.log(entries);
     getSearchResults(e.target.value);
+    setHighlight(e.target.value);
   }
 
   function getSearchResults(value) {
     // Input should at least have 3 characters
 
-    const results = entries.filter((entry) =>
-      entry.title.toLowerCase().includes(value.toLowerCase())
+    const results = entries.filter(
+      (entry) =>
+        entry.title.toLowerCase().includes(value.toLowerCase()) ||
+        entry.description.toLowerCase().includes(value.toLowerCase())
     );
     setFilter([]); // Reset filter when searching
     setItemOffset(0); // Reset offset when searching
@@ -164,18 +164,16 @@ function Contentful({ itemsPerPage }) {
               required
               onChange={handleChange}
             />
-            <button
-              type="submit"
-              className="text-white absolute end-2.5 bottom-2.5 bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Search
-            </button>
           </div>
         </form>
       </div>
       <div className="flex flex-col w-3/5 mx-auto items-center justify-center px-12">
         <div className="flex flex-wrap mx-6 justify-normal gap-3">
-          <Items currentItems={currentItems} filter={filter} />
+          <Items
+            currentItems={currentItems}
+            filter={filter}
+            highlight={highlight}
+          />
         </div>
         <footer className="sticky bottom-0">
           <div className="p-4">
@@ -189,7 +187,7 @@ function Contentful({ itemsPerPage }) {
               pageClassName={
                 "w-10 h-10 mx-1 pl-4 pt-2 text-slate-500 font-semibold bg-slate-800"
               }
-              activeClassName="text-slate-600 bg-slate-300"
+              activeClassName="text-slate-600 bg-slate-100"
               breakLabel="..."
               previousLabel={
                 <div className="w-10 h-10 mx-1 pl-4 pt-3 bg-slate-800">
