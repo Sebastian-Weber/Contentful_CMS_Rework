@@ -72,6 +72,7 @@ function DetailPage() {
                 value={apiDetails.usage}
                 extensions={[langs.jsx()]}
                 theme={darcula}
+                maxWidth="40rem"
               />
             </div>
           </div>
