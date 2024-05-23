@@ -1,7 +1,45 @@
 import { Link } from "react-router-dom";
 import useEmoji from "./useEmoji";
+import { useEffect } from "react";
 
-function ApiCard({ id, title, url, alt, description, popularity, category }) {
+function ApiCard({
+  id,
+  title,
+  url,
+  alt,
+  description,
+  popularity,
+  category,
+  highlight,
+}) {
+  function getHighlightedText(text, highlight) {
+    console.log(text);
+    const parts = text.split(new RegExp(`(${highlight})`, "gi"));
+    console.log(parts);
+    return (
+      <span>
+        {" "}
+        {parts.map((part, i) => (
+          <span
+            key={i}
+            style={
+              part.toLowerCase() === highlight.toLowerCase()
+                ? { backgroundColor: "yellow" }
+                : {}
+            }
+          >
+            {part}
+          </span>
+        ))}{" "}
+      </span>
+    );
+  }
+
+  useEffect(() => {
+    // console.log(title.split(" "));
+    console.log(getHighlightedText(title, "Twi"));
+  }, []);
+
   const colors = {
     eCommerce:
       "bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-1 rounded-full dark:bg-gray-700 dark:text-gray-300",
@@ -29,13 +67,13 @@ function ApiCard({ id, title, url, alt, description, popularity, category }) {
         <div className="flex row items-end pt-0">
           <img className="h-10 pt-0" src={url} alt={alt} />
           <h6 className="pl-2 text-base leading-5 font-bold tracking-tight text-slate-300 ">
-            {title}
+            {getHighlightedText(title, highlight)}
           </h6>
         </div>
 
         <hr className="w-10rem h-0.5 mx-auto md:my-3 bg-gray-100 border-0 rounded dark:bg-gray-700" />
         <p className="font-normal text-slate-300 min-h-24 dark:text-gray-400 line-clamp-4">
-          {description}
+          {getHighlightedText(description, highlight)}
         </p>
         <Link to={`/API-details/${id}`}>
           <div className="flex flex-row justify-end pb-2">

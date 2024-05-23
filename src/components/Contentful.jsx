@@ -6,7 +6,7 @@ import BeatLoader from "react-spinners/BeatLoader";
 import NavbarTop from "./NavbarTop";
 import OffCanvas from "./OffCanvas";
 
-function Items({ currentItems, filter }) {
+function Items({ currentItems, filter, highlight }) {
   return (
     <>
       {currentItems &&
@@ -22,6 +22,7 @@ function Items({ currentItems, filter }) {
                 description={entry.description}
                 popularity={entry.popularity}
                 category={entry.category}
+                highlight={highlight}
               />
             );
           }
@@ -35,26 +36,76 @@ function Contentful({ itemsPerPage }) {
   const [itemOffset, setItemOffset] = useState(0);
   const [filter, setFilter] = useState([]);
   const { entries, isLoading } = useFetchData();
+  const [searchResults, setSearchResults] = useState([]);
+  const [filteredEntries, setFilteredEntries] = useState([]);
+  const [currentItems, setCurrentItems] = useState([]);
+  const [highlight, setHighlight] = useState("");
 
   useEffect(() => {
-    console.log("filter ist: " + filter);
+    const getFilteredEntries = () => {
+      if (filter.length > 0) {
+        console.log("filter ist: " + filter);
+        return entries.filter((entry) => filter.includes(entry.category));
+      } else {
+        return entries;
+      }
+    };
+    setFilteredEntries([...getFilteredEntries()]);
   }, [filter]);
+
+  useEffect(() => {
+    console.log(entries);
+    setFilteredEntries([...entries]);
+  }, [entries]);
+
+  useEffect(() => {
+    console.log(currentItems);
+  }, [currentItems]);
+
+  useEffect(() => {
+    console.log(searchResults);
+    if (searchResults.length > 0) {
+      setFilteredEntries([...searchResults]);
+    } else {
+      setFilteredEntries([...entries]);
+    }
+  }, [searchResults]);
+
+  useEffect(() => {
+    function getCurrentItems() {
+      console.log("get current items");
+      console.log(filteredEntries);
+      return filteredEntries.slice(itemOffset, itemOffset + itemsPerPage);
+    }
+    setCurrentItems([...getCurrentItems()]);
+  }, [filteredEntries, itemOffset]);
 
   const handleFilterChange = useCallback((newFilter) => {
     setFilter([...newFilter]);
     setItemOffset(0); // Reset offset when filter changes
   }, []);
 
-  const filteredEntries =
-    filter.length > 0
-      ? entries.filter((entry) => filter.includes(entry.category))
-      : entries;
+  function handleChange(e) {
+    e.preventDefault();
+    console.log(e.target.value);
+    console.log(entries);
+    getSearchResults(e.target.value);
+    setHighlight(e.target.value);
+  }
 
-  const currentItems = filteredEntries.slice(
-    itemOffset,
-    itemOffset + itemsPerPage
-  );
-  const pageCount = Math.ceil(filteredEntries.length / itemsPerPage);
+  function getSearchResults(value) {
+    // Input should at least have 3 characters
+
+    const results = entries.filter(
+      (entry) =>
+        entry.title.toLowerCase().includes(value.toLowerCase()) ||
+        entry.description.toLowerCase().includes(value.toLowerCase())
+    );
+    setFilter([]); // Reset filter when searching
+    setItemOffset(0); // Reset offset when searching
+    console.log(results);
+    setSearchResults([...results]); // Update filteredEntries with search results
+  }
 
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % filteredEntries.length;
@@ -79,46 +130,7 @@ function Contentful({ itemsPerPage }) {
       {/* <NavbarTop onChangeFilter={handleFilterChange} categories={filter} /> */}
       <div className="flex bg-slate-800 mb-10 border-gray-500 border-b-2">
         <OffCanvas onChangeFilter={handleFilterChange} categories={filter} />
-        {/* <form className="mx-auto py-2">
-          <label
-            htmlFor="default-search"
-            className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
-          >
-            Search
-          </label>
-          <div className="relative w-96">
-            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-              <svg
-                className="w-4 h-4 text-gray-500 dark:text-gray-400"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                />
-              </svg>
-            </div>
-            <input
-              type="search"
-              id="default-search"
-              className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-800 rounded-lg bg-gray-800 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Search for API..."
-              required
-            />
-            <button
-              type="submit"
-              className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Search
-            </button>
-          </div>
-        </form> */}
+
         <form className="mx-auto py-2">
           <label
             htmlFor="default-search"
@@ -150,19 +162,18 @@ function Contentful({ itemsPerPage }) {
               className="block w-full p-4 ps-10 text-sm border-none outline-none text-slate-300 bg-gray-800 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white"
               placeholder="Search for API..."
               required
+              onChange={handleChange}
             />
-            <button
-              type="submit"
-              className="text-white absolute end-2.5 bottom-2.5 bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Search
-            </button>
           </div>
         </form>
       </div>
       <div className="flex flex-col w-3/5 mx-auto items-center justify-center px-12">
         <div className="flex flex-wrap mx-6 justify-normal gap-3">
-          <Items currentItems={currentItems} filter={filter} />
+          <Items
+            currentItems={currentItems}
+            filter={filter}
+            highlight={highlight}
+          />
         </div>
         <footer className="sticky bottom-0">
           <div className="p-4">
@@ -170,13 +181,13 @@ function Contentful({ itemsPerPage }) {
               containerClassName=""
               className="flex flex-row"
               onPageChange={handlePageClick}
-              pageCount={pageCount}
+              pageCount={Math.ceil(filteredEntries.length / itemsPerPage)}
               renderOnZeroPageCount={null}
               pageRangeDisplayed={3}
               pageClassName={
                 "w-10 h-10 mx-1 pl-4 pt-2 text-slate-500 font-semibold bg-slate-800"
               }
-              activeClassName="text-slate-200 bg-slate-300"
+              activeClassName="text-slate-600 bg-slate-100"
               breakLabel="..."
               previousLabel={
                 <div className="w-10 h-10 mx-1 pl-4 pt-3 bg-slate-800">
