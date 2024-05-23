@@ -71,20 +71,21 @@ function ApiCard({
           </h6>
         </div>
 
-        <hr className="w-10rem h-0.5 mx-auto md:my-3 bg-gray-100 border-0 rounded dark:bg-gray-700" />
+        <hr className="w-10rem h-0.5 mx-auto my-3 bg-gray-300 border-0 rounded dark:bg-gray-700" />
+
         <p className="font-normal text-slate-300 min-h-24 dark:text-gray-400 line-clamp-4">
           {getHighlightedText(description, highlight)}
         </p>
         <Link to={`/API-details/${id}`}>
-          <div className="flex flex-row justify-end pb-2">
+          <div className="flex flex-row justify-end py-2">
             <div className="flex flex-row">
               <button
                 id="toggle-btn"
-                className="mt-4 text-sm text-blue-500 focus:outline-none"
+                className="text-sm text-blue-500 focus:outline-none"
               >
                 Read More
               </button>
-              <div className="pt-4 px-2">
+              <div className="">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   height="24px"
@@ -98,7 +99,8 @@ function ApiCard({
             </div>
           </div>
         </Link>
-        <div className="flex justify-between my-2">
+        <hr className="w-10rem h-0.5 mx-auto bg-gray-500 border-0 rounded dark:bg-gray-700" />
+        <div className="flex justify-between py-3">
           {popularity ? (
             <div className="flex px-2 justify-center">
               <img src={getEmoji()} alt="" />

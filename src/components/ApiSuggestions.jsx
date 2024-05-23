@@ -22,14 +22,14 @@ function ApiSuggestions({ category }) {
   };
   return (
     <>
-      <h3 className="pl-2 text-base leading-5 font-bold tracking-tight text-slate-300 ">
-        other APIs from the category {category}:
+      <h3 className="pl-10 py-3 text-xl leading-5 font-semibold tracking-tight text-slate-200 ">
+        Other APIs from the category {category}
       </h3>
-      <div className="my-5">
-        <Slider {...settings}>
+      <div className="my-5 px-20">
+        <Slider {...settings} className="px-5 -mx-16">
           {filteredEntries.map((entry) => (
             <Link to={`/API-details/${entry.id}`} key={entry.id}>
-              <div className="flex flex-col w-60 p-3 mx-1 pb-2 bg-slate-700 border border-slate-700 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 ">
+              <div className="flex flex-col p-3 mx-1 min-h-32 pb-2 bg-slate-800 border border-slate-700 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 ">
                 <div className="flex">
                   <img
                     className="h-10 pt-0"
@@ -46,12 +46,12 @@ function ApiSuggestions({ category }) {
                   </div>
                 </div>
 
-                <button
+                {/* <button
                   id="toggle-btn"
                   className="mt-4 text-sm text-blue-500 focus:outline-none"
                 >
                   Read More
-                </button>
+                </button> */}
               </div>
             </Link>
           ))}

@@ -159,7 +159,7 @@ function Contentful({ itemsPerPage }) {
             <input
               type="search"
               id="default-search"
-              className="block w-full p-4 ps-10 text-sm border-none outline-none text-slate-300 bg-gray-800 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white"
+              className="block w-full my-2 p-2 ps-10 text-sm border-none outline-none text-slate-300 bg-slate-700 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white"
               placeholder="Search for API..."
               required
               onChange={handleChange}
@@ -185,7 +185,7 @@ function Contentful({ itemsPerPage }) {
               renderOnZeroPageCount={null}
               pageRangeDisplayed={3}
               pageClassName={
-                "w-10 h-10 mx-1 pl-4 pt-2 text-slate-500 font-semibold bg-slate-800"
+                "w-10 h-10 mx-1 pl-4 pt-2 text-slate-300 font-semibold bg-slate-800"
               }
               activeClassName="text-slate-600 bg-slate-100"
               breakLabel="..."
