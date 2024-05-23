@@ -258,7 +258,7 @@ export const data = [
 
   {
     id: "19",
-    title: "{JSON} Placeholder this is a very long title",
+    title: "{JSON} Placeholder",
     description:
       "Free fake and reliable API for testing and prototyping.\nPowered by JSON Server + LowDB.",
     file: {
