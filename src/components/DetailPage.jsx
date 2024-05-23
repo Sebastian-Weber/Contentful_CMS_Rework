@@ -36,7 +36,7 @@ function DetailPage() {
 
           {/* Window bar */}
           <div className="flex flex-row justify-end p-3 mb-2 font-semibold rounded-t-lg border-b-2 border-slate-600 text-slate-400 bg-slate-800">
-          
+
            {/* Close button */}
           <div className="px-2">
           <Link to={"/"}>
@@ -46,7 +46,7 @@ function DetailPage() {
               type="button"
               data-drawer-hide="drawer-navigation"
               aria-controls="drawer-navigation"
-              class=" text-gray-400 bg-transparent hover:bg-slate-500 hover:text-gray-900 rounded-lg text-sm w-8 h-8 top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white"
+              class=" text-gray-400 bg-transparent hover:bg-slate-500 focus:bg-slate-600 hover:text-gray-900 rounded-lg text-sm w-8 h-8 top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white"
             >
             <svg
               class="w-3 h-3"
@@ -67,53 +67,61 @@ function DetailPage() {
           </div>
           
           </div>
-
+          {/* Window padding */}
+          <div className="p-6">
 
           {/* Window body */}
           <div>
-          <div className="flex items-end p-8 pt-0 ">
+
+          <div className="flex flex-col">
+
+           {/* Headline + Icon  */}
+          <div className="flex items-end p-8 pt-2 pb-3">
             <img
-              className="h-12 pt-0"
+              className="h-20"
               src={apiDetails.url}
               alt={apiDetails.title}
             />
-            <div className="grow">
-              <h6 className="pl-2 text-base leading-5 font-bold tracking-tight text-slate-300">
-                {apiDetails.title}
+
+            <div>
+              <h6 className="pl-2 leading-5 text-3xl pb-2 font-bold tracking-tight text-slate-300">
+                  {apiDetails.title}
               </h6>
-              <p className="pl-2 font-normal text-slate-300 dark:text-gray-400 ">
-                by {apiDetails.author}
+              <p className="pl-2 pb-0 font-normal text-slate-300 dark:text-gray-400 ">
+                  by {apiDetails.author}
               </p>
             </div>
-            <div className="grow pl-40">
-              <p className="font-normal text-slate-300 dark:text-gray-400">
-                category: {apiDetails.category}
-              </p>
-              <p className="font-normal text-slate-300 dark:text-gray-400">
-                rating: {apiDetails.popularity}
-                <img src={getEmoji()} alt="" />
-              </p>
+            {/* Category + Rating  */}  
+            <div className="pl-6 -my-1">
+                <p className="font-normal text-slate-300 dark:text-gray-400">
+                  Category: {apiDetails.category}
+                </p>
+                <p className="font-normal text-slate-300 dark:text-gray-400">
+                  Rating: {apiDetails.popularity}
+                  <img src={getEmoji()} alt="" />
+                </p>
             </div>
-          </div>
-          <hr className="w-10rem h-0.5 mx-auto md:my-3 bg-gray-100 border-0 rounded dark:bg-gray-700" />
-          <div className="flex p-10">
-            <div className="flex w-3/5">
-              <p className="w-3/4 p-5 font-normal text-slate-300 dark:text-gray-400 text-lg">
-                {apiDetails.description}
-              </p>
             </div>
 
-            <div className="grow">
-              <p className="pb-2 font-normal text-slate-300 dark:text-gray-400">
-                usage with axios:
+ 
+
+
+          </div>
+          <hr className="w-10rem h-0.5 mx-auto md:my-3 bg-gray-100 border-0 rounded dark:bg-gray-700" />
+          <div className="px-10 py-1 pb-6">
+            <div className="flex flex-col">
+              <h2 className="pb-2 text-slate-200 text-xl font-semibold">Description</h2>
+              <p className="pb-6 font-normal text-slate-300 dark:text-gray-400 text-lg">
+                {apiDetails.description}
               </p>
+              <h2 className="pb-4 text-slate-200 text-xl font-semibold">Usage with Axios</h2>
               {apiDetails.usage ? (
                 <CodeMirror
                   value={apiDetails.usage}
                   extensions={[langs.jsx()]}
                   theme={darcula}
-                  maxWidth="40rem"
-                  minWidth="40rem"
+                  maxWidth="50rem"
+                  minWidth="50rem"
                 />
               ) : (
                 <p className="w-3/4 p-5 font-normal text-slate-300 dark:text-gray-400 text-lg">
@@ -134,6 +142,7 @@ function DetailPage() {
             </Link> */}
           </div>
         </div>
+      </div>
       </div>
       </div>
     </>
