@@ -103,18 +103,15 @@ function DetailPage() {
             </div>
             </div>
 
- 
-
-
           </div>
           <hr className="w-10rem h-0.5 mx-auto md:my-3 bg-gray-100 border-0 rounded dark:bg-gray-700" />
-          <div className="px-10 py-1 pb-6">
+          <div className="px-10 py-1 pb-3">
             <div className="flex flex-col">
               <h2 className="pb-2 text-slate-200 text-xl font-semibold">Description</h2>
-              <p className="pb-6 font-normal text-slate-300 dark:text-gray-400 text-lg">
+              <p className="pb-6 font-normal  text-md text-slate-300 dark:text-gray-400">
                 {apiDetails.description}
               </p>
-              <h2 className="pb-4 text-slate-200 text-xl font-semibold">Usage with Axios</h2>
+              <h2 className="py-4 text-slate-200 text-xl font-semibold">Usage with Axios</h2>
               {apiDetails.usage ? (
                 <CodeMirror
                   value={apiDetails.usage}
@@ -130,7 +127,7 @@ function DetailPage() {
               )}
             </div>
           </div>
-          <hr className="w-10rem h-0.5 mx-auto md:my-3 bg-gray-100 border-0 rounded dark:bg-gray-700" />
+          <hr className="w-10rem h-0.5 mx-auto md:my-3  bg-gray-500 border-0  rounded dark:bg-gray-700" />
           <div>
             <ApiSuggestions category={apiDetails.category} />
           </div>

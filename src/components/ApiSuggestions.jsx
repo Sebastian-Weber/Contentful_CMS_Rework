@@ -23,24 +23,24 @@ function ApiSuggestions({ category }) {
   return (
     <>
       <h3 className="pl-10 py-3 text-xl leading-5 font-semibold tracking-tight text-slate-200 ">
-        Other APIs from the category {category}
+        Other APIs from the category '{category}'
       </h3>
-      <div className="my-5 px-20">
+      <div className="my-2 px-20">
         <Slider {...settings} className="px-5 -mx-16">
           {filteredEntries.map((entry) => (
             <Link to={`/API-details/${entry.id}`} key={entry.id}>
-              <div className="flex flex-col p-3 mx-1 min-h-32 pb-2 bg-slate-800 border border-slate-700 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 ">
-                <div className="flex">
+              <div className="flex flex-col pt-6 pl-4 mx-1 min-h-36 py-2 bg-slate-800 border border-slate-700 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 ">
+                <div className="">
                   <img
-                    className="h-10 pt-0"
+                    className="h-10"
                     src={entry.file.url}
                     alt={entry.title}
                   />
-                  <div className="flex flex-col">
-                    <h3 className="pl-2 text-base leading-5 font-bold tracking-tight text-slate-300 ">
+                  <div className="flex flex-col pt-3">
+                    <h3 className="text-base leading-5 font-bold tracking-tight text-slate-300 ">
                       {entry.title}
                     </h3>
-                    <p className="pl-2 font-normal text-slate-300 dark:text-gray-400 ">
+                    <p className="font-normal text-slate-300 dark:text-gray-400 ">
                       by {entry.developer}
                     </p>
                   </div>
