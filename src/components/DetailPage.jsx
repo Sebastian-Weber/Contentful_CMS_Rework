@@ -35,7 +35,7 @@ function DetailPage() {
         <div className="block w-4/5 bg-slate-700 border border-slate-700 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 
           {/* Window bar */}
-          <div className="flex flex-row justify-end p-3 mb-2 font-semibold  text-slate-400 ">
+          <div className="flex flex-row justify-end p-3 mb-2 font-semibold text-slate-400 ">
 
            {/* Close button */}
           <div className="p-2">
@@ -68,7 +68,7 @@ function DetailPage() {
           
           </div>
           {/* Window padding */}
-          <div className="p-6">
+          <div className="p-1">
 
           {/* Window body */}
           <div>
