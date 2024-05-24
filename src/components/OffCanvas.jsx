@@ -112,7 +112,7 @@ function OffCanvas({ onChangeFilter, categories }) {
                       type="button"
                       data-drawer-hide="drawer-navigation"
                       aria-controls="drawer-navigation"
-                      class=" text-gray-400 bg-transparent hover:bg-slate-500 focus:bg-slate-600 hover:text-gray-900 rounded-lg text-sm w-8 h-8 top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white"
+                      class="bg-slate-500 text-gray-800 hover:bg-slate-300 hover:text-slate-800 focus:bg-slate-600 rounded-lg text-sm w-8 h-8 top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                       <svg
                         class="w-3 h-3"
