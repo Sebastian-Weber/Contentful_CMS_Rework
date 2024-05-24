@@ -299,7 +299,11 @@ export const data = [
     },
     description:
       "An API for the awesome HTTP Cats! Use it in your website to show funny error messages.",
+    usage: "https://http.cat/[status_code] Note: If you need an extension at the end of the URL just add .jpg.",
     popularity: 9.9,
     category: "Data",
+    developer: "rogeriopvl",
+
+",
   },
 ];
