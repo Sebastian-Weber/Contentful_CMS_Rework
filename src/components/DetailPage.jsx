@@ -35,54 +35,15 @@ function DetailPage() {
         <div className="block w-4/5 bg-slate-700 border border-slate-700 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 
           {/* Window bar */}
-          <div className="flex flex-row justify-end p-3 mb-2 font-semibold text-slate-400 ">
+          <div className="flex flex-row justify-between p-3 my-4 font-semibold text-slate-400 ">
 
-           {/* Close button */}
-          <div className="p-2">
-          <Link to={"/"}>
-            <button
-              id="close-menu"
-              onClick={() => setShow(!show)}
-              type="button"
-              data-drawer-hide="drawer-navigation"
-              aria-controls="drawer-navigation"
-              class="bg-slate-500 text-gray-800 hover:bg-slate-300 hover:text-slate-800 focus:bg-slate-600 rounded-lg text-sm w-8 h-8 top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white"
-            >
-            <svg
-              class="w-3 h-3"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 14 14"
-            >
-            <path
-              stroke="currentColor"
-              stroke-width="2"
-                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-              />
-            </svg>
-            </button>
-            </Link>
-
-          </div>
-          
-          </div>
-          {/* Window padding */}
-          <div className="p-1">
-
-          {/* Window body */}
-          <div>
-
-          <div className="flex flex-col">
-
-           {/* Headline + Icon  */}
-          <div className="flex items-end p-8 pt-2 pb-3">
+          {/* Headline + Icon  */}
+          <div className="flex items-end px-6 Py-6">
             <img
               className="h-20"
               src={apiDetails.url}
               alt={apiDetails.title}
             />
-
             <div>
               <h6 className="pl-2 leading-5 text-3xl pb-2 font-bold tracking-tight text-slate-300">
                   {apiDetails.title}
@@ -101,7 +62,46 @@ function DetailPage() {
                   <img src={getEmoji()} alt="" />
                 </p>
             </div>
+          </div>
+
+
+            {/* Close button */}
+            <div className="p-2 pr-4">
+              <Link to={"/"}>
+                <button
+                  id="close-menu"
+                  onClick={() => setShow(!show)}
+                  type="button"
+                  data-drawer-hide="drawer-navigation"
+                  aria-controls="drawer-navigation"
+                  class="bg-slate-500 text-gray-800 hover:bg-slate-300 hover:text-slate-800 focus:bg-slate-600 rounded-lg text-sm w-8 h-8 top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white"
+                >
+                  <svg
+                    class="w-3 h-3"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 14 14"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-width="2"
+                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                      />
+                  </svg>
+                </button>
+              </Link>
             </div>
+          
+          </div>
+          {/* Window padding */}
+          <div className="p-1">
+
+          {/* Window body */}
+          <div>
+
+          <div className="flex flex-col">
+
 
           </div>
           <hr className="w-10rem h-0.5 mx-auto md:my-3 bg-gray-100 border-0 rounded dark:bg-gray-700" />
