@@ -290,4 +290,16 @@ export const data = [
     popularity: 1,
     category: "Social",
   },
+
+  {
+    id: "22",
+    title: "HTTP Cats",
+    file: {
+      url: "",
+    },
+    description:
+      "An API for the awesome HTTP Cats! Use it in your website to show funny error messages.",
+    popularity: 1,
+    category: "Data",
+  },
 ];
