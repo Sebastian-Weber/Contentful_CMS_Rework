@@ -35,7 +35,7 @@ function DetailPage() {
         <div className="block w-4/5 bg-slate-700 border border-slate-700 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 
           {/* Window bar */}
-          <div className="flex flex-row justify-between p-3 my-4 font-semibold text-slate-400 ">
+          <div className="flex flex-row justify-between p-3 my-4 pb-0 mb-0 font-semibold text-slate-400 ">
 
           {/* Headline + Icon  */}
           <div className="flex items-end px-6 Py-6">
@@ -95,7 +95,7 @@ function DetailPage() {
           
           </div>
           {/* Window padding */}
-          <div className="p-1">
+          <div className="px-8 py-5">
 
           {/* Window body */}
           <div>
