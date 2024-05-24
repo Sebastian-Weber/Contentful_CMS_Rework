@@ -295,11 +295,11 @@ export const data = [
     id: "22",
     title: "HTTP Cats",
     file: {
-      url: "",
+      url: "https://http.cat/",
     },
     description:
       "An API for the awesome HTTP Cats! Use it in your website to show funny error messages.",
-    popularity: 1,
+    popularity: 9.9,
     category: "Data",
   },
 ];
