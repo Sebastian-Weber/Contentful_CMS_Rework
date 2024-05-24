@@ -35,10 +35,10 @@ function DetailPage() {
         <div className="block w-4/5 bg-slate-700 border border-slate-700 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 
           {/* Window bar */}
-          <div className="flex flex-row justify-end p-3 mb-2 font-semibold rounded-t-lg border-b-2 border-slate-600 text-slate-400 bg-slate-800">
+          <div className="flex flex-row justify-end p-3 mb-2 font-semibold  text-slate-400 ">
 
            {/* Close button */}
-          <div className="px-2">
+          <div className="p-2">
           <Link to={"/"}>
             <button
               id="close-menu"
@@ -46,7 +46,7 @@ function DetailPage() {
               type="button"
               data-drawer-hide="drawer-navigation"
               aria-controls="drawer-navigation"
-              class=" text-gray-400 bg-transparent hover:bg-slate-500 focus:bg-slate-600 hover:text-gray-900 rounded-lg text-sm w-8 h-8 top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white"
+              class="bg-slate-500 text-gray-800 hover:bg-slate-300 hover:text-slate-800 focus:bg-slate-600 rounded-lg text-sm w-8 h-8 top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white"
             >
             <svg
               class="w-3 h-3"
