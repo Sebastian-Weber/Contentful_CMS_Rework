@@ -25,7 +25,7 @@ function ApiSuggestions({ category }) {
       <h3 className="pl-10 py-3 text-xl leading-5 font-semibold tracking-tight text-slate-200 ">
         Other APIs from the category '{category}'
       </h3>
-      <div className="my-2 px-20">
+      <div className="my-2 px-32">
         <Slider {...settings} className="px-5 -mx-16">
           {filteredEntries.map((entry) => (
             <Link to={`/API-details/${entry.id}`} key={entry.id}>
@@ -45,13 +45,6 @@ function ApiSuggestions({ category }) {
                     </p>
                   </div>
                 </div>
-
-                {/* <button
-                  id="toggle-btn"
-                  className="mt-4 text-sm text-blue-500 focus:outline-none"
-                >
-                  Read More
-                </button> */}
               </div>
             </Link>
           ))}

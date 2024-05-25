@@ -290,4 +290,21 @@ export const data = [
     popularity: 1,
     category: "Social",
   },
+
+  {
+    id: "22",
+    title: "HTTP Cats",
+    description:
+      "An API for the awesome HTTP Cats! Use it in your website to show funny error messages.",
+    file: {
+      url: "https://http.cat/",
+    },
+    developer: "rogeriopvl",
+    usage:
+      "Insert your desired status code into square brackets: https://http.cat/[status_code] Note: If you need an extension at the end of the URL just add .jpg.",
+    popularity: 9.9,
+    category: "Social",
+  },
+
 ];
+
