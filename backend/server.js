@@ -7,7 +7,7 @@ const PORT = 8000;
 const app = express();
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://picapi.netlify.app/"], // Specify the exact origin
+    origin: ["http://localhost:5173", "https://picapi.netlify.app"], // Specify the exact origin
   })
 );
 app.use(express.json());
