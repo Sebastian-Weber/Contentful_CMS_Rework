@@ -12,11 +12,13 @@ function useFetchData() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
 
+  const deploy_url = import.meta.env.VITE_DEPLOY_URL;
+
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get(`https://picapi.onrender.com/data/`);
+        const response = await axios.get(`${deploy_url}/data/`);
         setEntries(response.data);
         setIsLoading(false);
       } catch (error) {
